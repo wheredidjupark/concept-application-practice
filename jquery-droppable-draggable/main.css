@@ -1,0 +1,11 @@
+#trashcan {
+	width: 400px;
+	height: 400px;
+	background-color: yellow;
+}
+
+#item {
+	width: 100px;
+	height: 100px;
+	background-color: orange;
+}
