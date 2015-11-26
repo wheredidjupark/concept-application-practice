@@ -1,0 +1,23 @@
+{
+  "name": "bootstrap-progress-bar",
+  "version": "0.0.0",
+  "homepage": "https://github.com/wheredidjupark/concept-application-practice",
+  "authors": [
+    "Ju Hyeon Park <wheredidjupark@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6"
+  }
+}
