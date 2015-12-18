@@ -22,3 +22,33 @@
 		height: 150px;
 	}
 }
+
+@mixin number{
+	display: inline-block;
+	margin: 0.5em;
+	background-color: #bbb;
+	width: 30px;
+	text-align: center;
+	font-size: 22px;
+	border-radius:50%;
+	cursor: pointer;
+}
+
+#numbers-frame {
+	.number {
+		@include number;
+		&.selected-true{
+			background-color:#e8e8e8;
+			font: #ddd;
+			cursor: not-allowed;
+		}
+	}
+
+}
+
+#answer-frame {
+	span{
+		@include number;
+	}
+}
+

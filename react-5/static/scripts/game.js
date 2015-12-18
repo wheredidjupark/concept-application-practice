@@ -1,7 +1,7 @@
 var StarFrame = React.createClass({
   render: function(){
 
-    var numberOfStars = 5;
+    var numberOfStars = Math.floor(Math.random()*9)+1;
     var stars = [];
     for(var i=0; i < numberOfStars; i++){
       stars.push(
@@ -30,16 +30,48 @@ var ButtonFrame = React.createClass({
 });
 
 var AnswerFrame = React.createClass({
+
   render: function(){
+
+    var selectedNumbers = this.props.selectedNumbers;
     return (
       <div id="answer-frame">
-        <div className="well"></div>
+        <div className="well">
+          {selectedNumbers}
+        </div>
+      </div>
+      );
+  }
+});
+
+var NumbersFrame = React.createClass({
+  render: function(){
+
+    var numbers = [];
+    var selectedNumbers = this.props.selectedNumbers;
+    for(var i=0; i <=9; i++){
+      var classVal = "number selected-"+(selectedNumbers.indexOf(i) >= 0);
+      numbers.push(
+        <div className={classVal}>
+        {i}
+        </div>
+        );
+    }
+
+    return (
+      <div id="numbers-frame">
+        <div className="well">
+          {numbers}
+        </div>
       </div>
       );
   }
 });
 
 var Game = React.createClass({
+  getInitialState: function(){
+    return {selectedNumbers: [3,6]}
+  },
   render: function(){
     return (
       <div id="game">
@@ -48,8 +80,10 @@ var Game = React.createClass({
         <div className="clearfix">
           <StarFrame />
           <ButtonFrame />
-          <AnswerFrame />
+          <AnswerFrame selectedNumbers={this.state.selectedNumbers}/>
         </div>
+
+          <NumbersFrame selectedNumbers={this.state.selectedNumbers} />
       </div>
       );
   }
