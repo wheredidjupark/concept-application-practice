@@ -20,10 +20,26 @@ var StarFrame = React.createClass({
 
 var ButtonFrame = React.createClass({
   render: function(){
+    var correct = this.props.correct;
     var disabled = (this.props.selectedNumbers.length === 0);
+    var button;
+
+    switch(correct){
+      case true:
+        button = (<button className="btn btn-lg btn-success">
+        <span className="glyphicon glyphicon-ok"></span></button>);
+        break;
+      case false:
+        button = (<button className="btn btn-lg btn-danger">
+        <span className="glyphicon glyphicon-remove"></span></button>);
+        break;
+      default:
+        button = <button className="btn btn-primary btn-lg" disabled={disabled} onClick={this.props.checkAnswer}>=</button>
+    };
+
     return (
       <div id="button-frame">
-        <button className="btn btn-primary btn-lg" disabled={disabled}>=</button>
+        {button}
       </div>
       );
   }
@@ -83,7 +99,8 @@ var NumbersFrame = React.createClass({
 var Game = React.createClass({
   getInitialState: function(){
     return {selectedNumbers: [],
-            numberOfStars:  Math.floor(Math.random()*9)+1}
+            numberOfStars:  Math.floor(Math.random()*9)+1,
+            correct: null}
   },
   selectNumber: function(number){
     if(this.state.selectedNumbers.indexOf(number) < 0){
@@ -101,17 +118,27 @@ var Game = React.createClass({
       selectedNumbers: selectedNumbers
     });
   },
+  checkAnswer: function(){
+    var selectedNumbers = this.state.selectedNumbers;
+    var sum = selectedNumbers.reduce(function(a,b){
+      return a+b;
+    }, 0);
+    var numberOfStars = this.state.numberOfStars;
+    var correct = (numberOfStars === sum);
+    this.setState({correct: correct});
+  },
   render: function(){
 
     var numberOfStars = this.state.numberOfStars;
     var selectedNumbers = this.state.selectedNumbers;
+    var correct = this.state.correct;
     return (
       <div id="game">
         <h2>Play Nine</h2>
         <hr />
         <div className="clearfix">
           <StarFrame numberOfStars = {numberOfStars}/>
-          <ButtonFrame selectedNumbers={selectedNumbers}/>
+          <ButtonFrame selectedNumbers={selectedNumbers} checkAnswer={this.checkAnswer} correct={correct}/>
           <AnswerFrame selectedNumbers={selectedNumbers} unselectNumber={this.unselectNumber}/>
         </div>
 
