@@ -28,6 +28,10 @@
     background-color: #e8e8e8;
     font: #ddd;
     cursor: not-allowed; }
+  #numbers-frame .number.used-true {
+    background-color: #ffffff;
+    font: #red;
+    cursor: not-allowed; }
 
 #answer-frame span {
   display: inline-block;

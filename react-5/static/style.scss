@@ -42,6 +42,11 @@
 			font: #ddd;
 			cursor: not-allowed;
 		}
+		&.used-true{
+			background-color: #ffffff;
+			font: #red;
+			cursor: not-allowed;
+		}
 	}
 
 }
